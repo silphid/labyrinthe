@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Hero : MonoBehaviour
+public class Hero : Element
 {
 	public const float TempsEntreTouches = 0.25f;
 	

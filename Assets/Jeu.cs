@@ -17,12 +17,14 @@ public class Jeu : MonoBehaviour
 		"X        XXXX",
 		"X    X  XXXXX",
 		"XXXXXXXXXXXXX"
-	
-		
 	};
+
+	private Element[,] elements;
 	
 	void Start ()
 	{
+		elements = new Element[Largeur, Hauteur];
+		
 		int y = 0;
 		foreach (var ligne in tableau)
 		{
