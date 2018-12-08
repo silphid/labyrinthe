@@ -1,0 +1,18 @@
+/Library/
+/Temp/
+/.idea/
+/obj/
+/etc/
+/AppData/
+*.csproj
+/Assets/StreamingAssets
+/Assets/Editor Default Resources/Configs/Customs
+/Assets/Editor Default Resources/Configs/Customs.meta
+/Assets/Editor Default Resources/E2Settings.asset
+/Assets/Editor Default Resources/E2Settings.asset.meta
+/Assets/Application/Resources/e2config.json
+/Assets/Application/Resources/e2config.json.meta
+*.sln
+*.sln.DotSettings.user
+/builder.config
+/Build/
