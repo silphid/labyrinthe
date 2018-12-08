@@ -16,3 +16,4 @@
 *.sln.DotSettings.user
 /builder.config
 /Build/
+/UnityPackageManager/
