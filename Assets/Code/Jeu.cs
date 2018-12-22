@@ -12,7 +12,7 @@ namespace Code
 		private const int Largeur = 13;
 		private const int Hauteur = 6;
 
-		private string[] tableau =
+		private readonly string[] tableau =
 		{
 			"XXXXXXXXXXXXX",
 			"XXXXXX  XXXXX",
@@ -59,9 +59,9 @@ namespace Code
 			}
 			else if (charactère == 'O')
 			{
-				objet = Instantiate(Plancher, transform);
-				tuile = objet.GetComponent<Plancher>();
-				Hero hero = objet.GetComponent<Hero>();
+				tuile = CréerPlancher(x, y);
+				objet = Instantiate(Hero, transform);
+				var hero = objet.GetComponent<Hero>();
 				tuile.Element = hero;
 				hero.Jeu = this;
 			}
@@ -71,7 +71,20 @@ namespace Code
 			}
 
 			tuiles[x, y] = tuile;
+			RéglerPosition(objet, x, y);
+		}
+
+		private void RéglerPosition(GameObject objet, int x, int y)
+		{
 			objet.transform.position = new Vector3(x, -y, 0);
+		}
+
+		private Plancher CréerPlancher(int x, int y)
+		{
+			var objet = Instantiate(Plancher, transform);
+			var plancher = objet.GetComponent<Plancher>();
+			RéglerPosition(objet, x, y);
+			return plancher;
 		}
 
 		public bool PeutOccuperTuile(int x, int y)
@@ -79,11 +92,23 @@ namespace Code
 			if (x < 0 || x >= Largeur || y < 0 || y >= Hauteur)
 				return false;
 
-			char charactère = tableau[y][x];
-			if (charactère == 'X')
+			var tuile = tuiles[x, y];
+			if (tuile.Element != null)
+				return false;
+
+			if (tuile is Mur)
 				return false;
 
 			return true;
+		}
+
+		public void DéplacerÉlément(Element element, int x1, int y1, int x2, int y2)
+		{
+			var tuile1 = tuiles[x1, y1];
+			var tuile2 = tuiles[x2, y2];
+
+			tuile1.Element = null;
+			tuile2.Element = element;
 		}
 	}
 }

@@ -19,6 +19,7 @@ namespace Code
 			{
 				if (Jeu.PeutOccuperTuile(x + 1, y))
 				{
+					Jeu.DéplacerÉlément(this, x, y, x + 1, y);
 					x++;
 					MettreÀJourLaPosition();
 					tempsDernièreTouche = Time.time;
@@ -28,6 +29,7 @@ namespace Code
 			{
 				if (Jeu.PeutOccuperTuile(x - 1, y))
 				{
+					Jeu.DéplacerÉlément(this, x, y, x - 1, y);
 					x--;
 					MettreÀJourLaPosition();
 					tempsDernièreTouche = Time.time;
@@ -37,6 +39,7 @@ namespace Code
 			{
 				if (Jeu.PeutOccuperTuile(x, y - 1))
 				{
+					Jeu.DéplacerÉlément(this, x, y, x, y - 1);
 					y--;
 					MettreÀJourLaPosition();
 					tempsDernièreTouche = Time.time;
@@ -46,6 +49,7 @@ namespace Code
 			{
 				if (Jeu.PeutOccuperTuile(x, y + 1))
 				{
+					Jeu.DéplacerÉlément(this, x, y, x, y + 1);
 					y++;
 					MettreÀJourLaPosition();
 					tempsDernièreTouche = Time.time;
