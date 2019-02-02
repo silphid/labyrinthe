@@ -6,8 +6,6 @@ namespace Code
 	{
 		public const float TempsEntreTouches = 0.25f;
 
-		private int x = 2;
-		private int y = 2;
 		private float tempsDernièreTouche;
 
 		void Update()

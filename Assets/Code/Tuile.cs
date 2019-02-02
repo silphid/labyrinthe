@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 namespace Code
 {
@@ -9,6 +11,18 @@ namespace Code
         public bool PeuxTuÊtreOccupée()
         {
             return Elements.Count == 1 && Elements[0] is Plancher;
+        }
+
+        public void DetruitTout()
+        {
+            Elements.ToList().ForEach(element =>
+            {
+                if (!(element is Plancher))
+                {
+                    Elements.Remove(element);
+                    GameObject.Destroy(element.gameObject);
+                }
+            });
         }
     }
 }

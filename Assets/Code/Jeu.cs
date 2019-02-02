@@ -68,13 +68,16 @@ namespace Code
 			tuiles[x, y] = tuile;
 		}
 
-		private void Créer<T>(GameObject prefab, Tuile tuile, int x, int y) where T : Element
+		private T Créer<T>(GameObject prefab, Tuile tuile, int x, int y) where T : Element
 		{
 			var objet = Instantiate(prefab, transform);
 			var t = objet.GetComponent<T>();
 			t.Jeu = this;
+			t.x = x;
+			t.y = y;
 			RéglerPosition(objet, x, y);
 			tuile.Elements.Add(t);
+			return t;
 		}
 
 		private void RéglerPosition(GameObject objet, int x, int y)
@@ -102,7 +105,14 @@ namespace Code
 		public void PlacerBombe(int x, int y)
 		{
 			var tuile = tuiles[x, y];
-			Créer<Bombe>(Bombe, tuile, x, y);
+			var bombe = Créer<Bombe>(Bombe, tuile, x, y);
+			bombe.DémarrerCompteÀRebours();
+		}
+
+		public void DetruitElementsSurTuile(int x, int y)
+		{
+			var tuile = tuiles[x, y];
+			tuile.DetruitTout();
 		}
 	}
 }
