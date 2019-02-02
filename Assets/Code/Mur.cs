@@ -1,6 +1,6 @@
 namespace Code
 {
-    public class Mur : Tuile
+    public class Mur : Element
     {
 
     }

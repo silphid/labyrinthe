@@ -17,12 +17,12 @@ namespace Code
 			"XXXXXXXXXXXXX",
 			"XXXXXX  XXXXX",
 			"XXO  X  XXXXX",
-			"X        XXXX",
+			"X         XXX",
 			"X    X  XXXXX",
 			"XXXXXXXXXXXXX"
 		};
 
-		private Tuile[,] tuiles;
+		public Tuile[,] tuiles;
 
 		void Start()
 		{
@@ -44,26 +44,20 @@ namespace Code
 
 		private void CréeObjet(char charactère, int x, int y)
 		{
-			GameObject objet;
-			Tuile tuile;
-			
+			var tuile = new Tuile();
+
 			if (charactère == 'X')
 			{
-				objet = Instantiate(Mur, transform);
-				tuile = objet.GetComponent<Mur>();
+				Créer<Mur>(Mur, tuile, x, y);
 			}
 			else if (charactère == ' ')
 			{
-				objet = Instantiate(Plancher, transform);
-				tuile = objet.GetComponent<Plancher>();
+				Créer<Plancher>(Plancher, tuile, x, y);
 			}
 			else if (charactère == 'O')
 			{
-				tuile = CréerPlancher(x, y);
-				objet = Instantiate(Hero, transform);
-				var hero = objet.GetComponent<Hero>();
-				tuile.Element = hero;
-				hero.Jeu = this;
+				Créer<Plancher>(Plancher, tuile, x, y);
+				Créer<Hero>(Hero, tuile, x, y);
 			}
 			else
 			{
@@ -71,7 +65,15 @@ namespace Code
 			}
 
 			tuiles[x, y] = tuile;
+		}
+
+		private void Créer<T>(GameObject prefab, Tuile tuile, int x, int y) where T : Element
+		{
+			var objet = Instantiate(prefab, transform);
+			var t = objet.GetComponent<T>();
+			t.Jeu = this;
 			RéglerPosition(objet, x, y);
+			tuile.Elements.Add(t);
 		}
 
 		private void RéglerPosition(GameObject objet, int x, int y)
@@ -93,22 +95,7 @@ namespace Code
 				return false;
 
 			var tuile = tuiles[x, y];
-			if (tuile.Element != null)
-				return false;
-
-			if (tuile is Mur)
-				return false;
-
-			return true;
-		}
-
-		public void DéplacerÉlément(Element element, int x1, int y1, int x2, int y2)
-		{
-			var tuile1 = tuiles[x1, y1];
-			var tuile2 = tuiles[x2, y2];
-
-			tuile1.Element = null;
-			tuile2.Element = element;
+			return tuile.PeuxTuÊtreOccupée();
 		}
 	}
 }

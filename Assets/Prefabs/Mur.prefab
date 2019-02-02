@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4603934121038604}
   - component: {fileID: 212172916648842962}
+  - component: {fileID: 114518615157191812}
   m_Layer: 0
   m_Name: Mur
   m_TagString: Untagged
@@ -40,6 +41,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114518615157191812
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1595001268537762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bf191910a894951b7287178adc1fc17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Element: {fileID: 0}
 --- !u!212 &212172916648842962
 SpriteRenderer:
   m_ObjectHideFlags: 1

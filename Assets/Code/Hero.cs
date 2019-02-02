@@ -6,8 +6,6 @@ namespace Code
 	{
 		public const float TempsEntreTouches = 0.25f;
 
-		public Jeu Jeu;
-
 		private int x = 2;
 		private int y = 2;
 		private float tempsDernièreTouche;
@@ -19,7 +17,7 @@ namespace Code
 			{
 				if (Jeu.PeutOccuperTuile(x + 1, y))
 				{
-					Jeu.DéplacerÉlément(this, x, y, x + 1, y);
+					Déplacer(x, y, x + 1, y);
 					x++;
 					MettreÀJourLaPosition();
 					tempsDernièreTouche = Time.time;
@@ -29,7 +27,7 @@ namespace Code
 			{
 				if (Jeu.PeutOccuperTuile(x - 1, y))
 				{
-					Jeu.DéplacerÉlément(this, x, y, x - 1, y);
+					Déplacer(x, y, x - 1, y);
 					x--;
 					MettreÀJourLaPosition();
 					tempsDernièreTouche = Time.time;
@@ -39,7 +37,7 @@ namespace Code
 			{
 				if (Jeu.PeutOccuperTuile(x, y - 1))
 				{
-					Jeu.DéplacerÉlément(this, x, y, x, y - 1);
+					Déplacer(x, y, x, y - 1);
 					y--;
 					MettreÀJourLaPosition();
 					tempsDernièreTouche = Time.time;
@@ -49,7 +47,7 @@ namespace Code
 			{
 				if (Jeu.PeutOccuperTuile(x, y + 1))
 				{
-					Jeu.DéplacerÉlément(this, x, y, x, y + 1);
+					Déplacer(x, y, x, y + 1);
 					y++;
 					MettreÀJourLaPosition();
 					tempsDernièreTouche = Time.time;

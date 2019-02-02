@@ -1,6 +1,6 @@
 namespace Code
 {
-    public class Plancher : Tuile
+    public class Plancher : Element
     {
         
     }

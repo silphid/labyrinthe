@@ -1,9 +1,14 @@
-using UnityEngine;
+using System.Collections.Generic;
 
 namespace Code
 {
-    public class Tuile : MonoBehaviour
+    public class Tuile
     {
-        public Element Element;
+        public List<Element> Elements = new List<Element>();
+
+        public bool PeuxTuÊtreOccupée()
+        {
+            return Elements.Count == 1 && Elements[0] is Plancher;
+        }
     }
 }
