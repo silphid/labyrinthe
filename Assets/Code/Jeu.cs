@@ -8,6 +8,7 @@ namespace Code
 		public GameObject Hero;
 		public GameObject Mur;
 		public GameObject Plancher;
+		public GameObject Bombe;
 
 		private const int Largeur = 13;
 		private const int Hauteur = 6;
@@ -96,6 +97,12 @@ namespace Code
 
 			var tuile = tuiles[x, y];
 			return tuile.PeuxTuÊtreOccupée();
+		}
+
+		public void PlacerBombe(int x, int y)
+		{
+			var tuile = tuiles[x, y];
+			Créer<Bombe>(Bombe, tuile, x, y);
 		}
 	}
 }

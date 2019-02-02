@@ -53,6 +53,10 @@ namespace Code
 					tempsDernièreTouche = Time.time;
 				}
 			}
+			else if (Input.GetKey(KeyCode.Space) && tempsÉcouléDepuisDernièreTouche > TempsEntreTouches)
+			{
+				Jeu.PlacerBombe(x, y);
+			}
 		}
 
 		void MettreÀJourLaPosition()

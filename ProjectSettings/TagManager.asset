@@ -44,6 +44,9 @@ TagManager:
   - name: Plancher
     uniqueID: 3020586847
     locked: 0
+  - name: Objet
+    uniqueID: 2696044947
+    locked: 0
   - name: Mur
     uniqueID: 2188929557
     locked: 0
