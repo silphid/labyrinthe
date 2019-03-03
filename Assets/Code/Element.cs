@@ -5,6 +5,7 @@ namespace Code
     public class Element : MonoBehaviour
     {
         public Jeu Jeu;
+        public Tuile Tuile;
         public int x;
         public int y;
    
@@ -15,6 +16,20 @@ namespace Code
 
             ancienneTuile.Elements.Remove(this);
             nouvelleTuile.Elements.Add(this);
+        }
+
+        public virtual void Explosion()
+        {
+        }
+
+        public virtual bool AccepteVisiteur()
+        {
+            return false;
+        }
+
+        public void Detruire()
+        {
+            Tuile.Detruire(this);
         }
     }
 }

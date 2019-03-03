@@ -51,7 +51,7 @@ namespace Code
 					tempsDernièreTouche = Time.time;
 				}
 			}
-			else if (Input.GetKey(KeyCode.Space) && tempsÉcouléDepuisDernièreTouche > TempsEntreTouches)
+			else if (Input.GetKeyDown(KeyCode.Space))
 			{
 				Jeu.PlacerBombe(x, y);
 			}
@@ -60,6 +60,11 @@ namespace Code
 		void MettreÀJourLaPosition()
 		{
 			transform.position = new Vector3(x, -y, 0);
+		}
+
+		public override void Explosion()
+		{
+			Detruire();
 		}
 	}
 }

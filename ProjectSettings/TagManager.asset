@@ -50,3 +50,6 @@ TagManager:
   - name: Mur
     uniqueID: 2188929557
     locked: 0
+  - name: Effets
+    uniqueID: 1504259953
+    locked: 0

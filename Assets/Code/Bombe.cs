@@ -5,14 +5,25 @@ namespace Code
 {
     public class Bombe : Element
     {
-        public void DémarrerCompteÀRebours()
+        public void Amorcer()
         {
-            Observable.Timer(TimeSpan.FromSeconds(3)).Subscribe(x => Explose());
+            Observable.Timer(TimeSpan.FromSeconds(1.5)).Subscribe(x => Explose());
         }
 
         public void Explose()
         {
-            Jeu.DetruitElementsSurTuile(x, y);
+            
+            Jeu.Explose(x, y);
+        }
+        
+        public override bool AccepteVisiteur()
+        {
+            return true;
+        }
+
+        public override void Explosion()
+        {
+            Detruire();
         }
     }
 }

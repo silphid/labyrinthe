@@ -159,6 +159,8 @@ MonoBehaviour:
   Mur: {fileID: 1595001268537762, guid: 22f7bfd3f82514864921e24159478c0a, type: 3}
   Plancher: {fileID: 1278429617283364, guid: d26b501560a3544718099556317812b5, type: 3}
   Bombe: {fileID: 8718021587384691089, guid: 96c9f8ae45d084483a6b1bc9077c6a88, type: 3}
+  Boite: {fileID: 4032218148971694320, guid: 7fb7555b5887f4404bdaa43e2df95186, type: 3}
+  Explosion: {fileID: 159918, guid: a0040bf7072bc2f4e82d887d50a9c5e2, type: 3}
 --- !u!1 &1359800156
 GameObject:
   m_ObjectHideFlags: 0

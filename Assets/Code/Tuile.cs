@@ -8,21 +8,35 @@ namespace Code
     {
         public List<Element> Elements = new List<Element>();
 
-        public bool PeuxTuÊtreOccupée()
+        public bool AccepteVisiteur()
         {
-            return Elements.Count == 1 && Elements[0] is Plancher;
+            return Elements.All(element => element.AccepteVisiteur());
         }
 
-        public void DetruitTout()
+        public void Detruire(Element element)
         {
-            Elements.ToList().ForEach(element =>
+            Enlever(element);
+            GameObject.Destroy(element.gameObject);
+        }
+
+        public void Explosion()
+        {
+            Elements.ForEach(element =>
             {
-                if (!(element is Plancher))
-                {
-                    Elements.Remove(element);
-                    GameObject.Destroy(element.gameObject);
-                }
+                element.Explosion();
             });
+        }
+
+        public void Ajouter(Element element)
+        {
+            Elements.Add(element);
+            element.Tuile = this;
+        }
+
+        public void Enlever(Element element)
+        {
+            Elements.Remove(element);
+            element.Tuile = null;
         }
     }
 }

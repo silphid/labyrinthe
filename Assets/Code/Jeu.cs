@@ -9,6 +9,8 @@ namespace Code
 		public GameObject Mur;
 		public GameObject Plancher;
 		public GameObject Bombe;
+		public GameObject Boite;
+		public GameObject Explosion;
 
 		private const int Largeur = 13;
 		private const int Hauteur = 6;
@@ -16,10 +18,10 @@ namespace Code
 		private readonly string[] tableau =
 		{
 			"XXXXXXXXXXXXX",
-			"XXXXXX  XXXXX",
+			"XXXXXXBBXXXXX",
 			"XXO  X  XXXXX",
-			"X         XXX",
-			"X    X  XXXXX",
+			"XB  BB  BBXXX",
+			"X    XBBXXXXX",
 			"XXXXXXXXXXXXX"
 		};
 
@@ -60,6 +62,11 @@ namespace Code
 				Créer<Plancher>(Plancher, tuile, x, y);
 				Créer<Hero>(Hero, tuile, x, y);
 			}
+			else if (charactère == 'B')
+			{
+				Créer<Plancher>(Plancher, tuile, x, y);
+				Créer<Boite>(Boite, tuile, x, y);
+			}
 			else
 			{
 				throw new Exception("Le charactère est invalide: " + charactère);
@@ -76,7 +83,7 @@ namespace Code
 			t.x = x;
 			t.y = y;
 			RéglerPosition(objet, x, y);
-			tuile.Elements.Add(t);
+			tuile.Ajouter(t);
 			return t;
 		}
 
@@ -85,34 +92,38 @@ namespace Code
 			objet.transform.position = new Vector3(x, -y, 0);
 		}
 
-		private Plancher CréerPlancher(int x, int y)
-		{
-			var objet = Instantiate(Plancher, transform);
-			var plancher = objet.GetComponent<Plancher>();
-			RéglerPosition(objet, x, y);
-			return plancher;
-		}
-
 		public bool PeutOccuperTuile(int x, int y)
 		{
 			if (x < 0 || x >= Largeur || y < 0 || y >= Hauteur)
 				return false;
 
 			var tuile = tuiles[x, y];
-			return tuile.PeuxTuÊtreOccupée();
+			return tuile.AccepteVisiteur();
 		}
 
 		public void PlacerBombe(int x, int y)
 		{
 			var tuile = tuiles[x, y];
 			var bombe = Créer<Bombe>(Bombe, tuile, x, y);
-			bombe.DémarrerCompteÀRebours();
+			bombe.Amorcer();
 		}
 
-		public void DetruitElementsSurTuile(int x, int y)
+		public void Explose(int x, int y)
 		{
-			var tuile = tuiles[x, y];
-			tuile.DetruitTout();
+			var objet = Instantiate(Explosion, transform);
+			RéglerPosition(objet, x, y);
+
+			for (int i = x - 1; i <= x + 1; i++)
+			{
+				for (int j = y - 1; j <= y + 1; j++)
+				{
+					if (i >= 0 && j >= 0 && i < Largeur && j < Hauteur)
+					{
+						var tuile = tuiles[i, j];
+						tuile.Explosion();
+					}
+				}
+			}
 		}
 	}
 }
